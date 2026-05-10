@@ -130,6 +130,134 @@ main .lede {
   font-weight: 700;
 }
 
+.how-it-works {
+  margin: 64px 0;
+}
+
+.how-it-works h2,
+.faq h2 {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--text-soft);
+  margin-bottom: 28px;
+}
+
+.steps {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.steps li {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.step-num {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: white;
+  font-weight: 700;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2px;
+}
+
+.step-body h3 {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 4px;
+  letter-spacing: -0.2px;
+}
+
+.step-body p {
+  font-size: 16px;
+  color: var(--text-soft);
+  line-height: 1.5;
+}
+
+.how-it-works .footnote {
+  font-size: 15px;
+  color: var(--text-soft);
+  font-style: italic;
+  margin-top: 28px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+}
+
+.faq {
+  margin: 64px 0;
+}
+
+.faq details {
+  border-bottom: 1px solid var(--border);
+  padding: 16px 0;
+}
+
+.faq details:first-of-type {
+  border-top: 1px solid var(--border);
+}
+
+.faq summary {
+  font-size: 17px;
+  font-weight: 500;
+  color: var(--text);
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 4px;
+  transition: color 0.15s;
+}
+
+.faq summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq summary::after {
+  content: "+";
+  font-size: 22px;
+  color: var(--accent);
+  font-weight: 400;
+  margin-left: 16px;
+  line-height: 1;
+}
+
+.faq details[open] summary::after {
+  content: "−";
+}
+
+.faq summary:hover {
+  color: var(--accent);
+}
+
+.faq details[open] summary {
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+
+.faq details p {
+  font-size: 16px;
+  color: var(--text-soft);
+  line-height: 1.55;
+  padding-right: 36px;
+}
+
+.faq details p + p {
+  margin-top: 8px;
+}
+
 .signup {
   background: var(--panel);
   border: 1px solid var(--border);
@@ -272,6 +400,10 @@ footer a:hover { text-decoration: underline; }
   .signup { padding: 24px; }
   .signup form { flex-direction: column; }
   .signup button { width: 100%; }
+  .step-num { width: 28px; height: 28px; font-size: 14px; }
+  .step-body h3 { font-size: 16px; }
+  .faq summary { font-size: 16px; }
+  .faq details p { padding-right: 8px; }
 }
 </style>
 </head>
@@ -293,6 +425,100 @@ footer a:hover { text-decoration: underline; }
         <li>Gamers playing across borders</li>
         <li>Language learners building real fluency</li>
       </ul>
+    </section>
+
+    <section class="how-it-works">
+      <h2>How it works</h2>
+      <ol class="steps">
+        <li>
+          <span class="step-num">1</span>
+          <div class="step-body">
+            <h3>You speak — or play audio in another language.</h3>
+            <p>Microphone, system audio, a video playing on your screen — Hailsi can listen to either source. Pick what makes sense for the conversation.</p>
+          </div>
+        </li>
+        <li>
+          <span class="step-num">2</span>
+          <div class="step-body">
+            <h3>Hailsi transcribes, locally.</h3>
+            <p>Your audio runs through speech recognition on your own computer. No upload, no cloud trip — your words stay where you said them.</p>
+          </div>
+        </li>
+        <li>
+          <span class="step-num">3</span>
+          <div class="step-body">
+            <h3>Translation runs locally too.</h3>
+            <p>The transcribed text is translated by a language model that lives on your computer. Roughly 1.6 to 3 seconds end-to-end on a modern CPU.</p>
+          </div>
+        </li>
+        <li>
+          <span class="step-num">4</span>
+          <div class="step-body">
+            <h3>You read what they said. They read what you mean.</h3>
+            <p>The other side appears in your overlay; your reply gets translated back the same way. Type, copy, or have the result spoken aloud — your call.</p>
+          </div>
+        </li>
+      </ol>
+      <p class="footnote">Works across any app — calls, games, meetings, browsers. No integrations, no plugins, no setup on the other person's end.</p>
+    </section>
+
+    <section class="faq">
+      <h2>Questions</h2>
+
+      <details>
+        <summary>What languages does Hailsi support?</summary>
+        <p>v1 launches with Finnish ↔ English. The architecture supports more pairs; we'll add them based on waitlist demand. Tell us which pair you'd use most when you sign up.</p>
+      </details>
+
+      <details>
+        <summary>What does it cost?</summary>
+        <p>The FREE tier ships day one — fully usable for personal conversations, runs entirely on your computer. Paid tiers come later for people who want cloud-quality models or higher accuracy. No surprise charges.</p>
+      </details>
+
+      <details>
+        <summary>Does it work offline?</summary>
+        <p>Yes. The FREE tier runs everything locally — speech recognition and translation happen on your computer. You'll need internet for the first model download (~850MB on first launch); after that, no connection required.</p>
+      </details>
+
+      <details>
+        <summary>What about my privacy?</summary>
+        <p>On the FREE tier, no audio leaves your device. Speech recognition and translation run locally. We don't transcribe your conversations on a server, train models on your audio, or sell your data. Future paid tiers that use cloud services are clearly labeled and opt-in.</p>
+      </details>
+
+      <details>
+        <summary>What hardware do I need?</summary>
+        <p>Windows 10 or 11 to start. A modern CPU — anything from the last 5-6 years should be fine. About 1GB of disk space plus models. No GPU required for the FREE tier; if you have one, a future PRO tier will be even faster on it.</p>
+      </details>
+
+      <details>
+        <summary>How is this different from Google Translate or DeepL?</summary>
+        <p>Those are great for typed text or one-shot translations. Hailsi is built for live conversations across any app — you don't paste text into a website. The overlay translates what's happening in real time, whether you're on Discord, in a game, on a Zoom call, or watching a video.</p>
+      </details>
+
+      <details>
+        <summary>Will it work in Discord, Zoom, or Teams?</summary>
+        <p>Yes. Hailsi is an overlay that captures audio independent of the app you're in. It listens to your microphone or your system's audio output, translates, and shows the result. The other person doesn't need Hailsi installed.</p>
+      </details>
+
+      <details>
+        <summary>What if it makes a mistake?</summary>
+        <p>It will, sometimes — voice translation isn't perfect, especially with names, slang, or technical jargon. Each translation shows the original transcript so you can catch when something feels off. We'd rather show you the seams than pretend they aren't there.</p>
+      </details>
+
+      <details>
+        <summary>What does "Hailsi" mean?</summary>
+        <p>From Estonian: <em>hääl</em> (voice) + <em>sild</em> (bridge). A voice-bridge between languages. Pronounced roughly "HAIL-see."</p>
+      </details>
+
+      <details>
+        <summary>Why Windows only at launch?</summary>
+        <p>It's where the developer works daily, so it's where the build can be tested reliably. macOS and Linux are on the roadmap; multi-platform is a real goal, not a placeholder. If you'd run this on Mac or Linux, mention it on the waitlist signup.</p>
+      </details>
+
+      <details>
+        <summary>When can I try it?</summary>
+        <p>Private alpha begins late May 2026 with a small invited cohort. Public alpha — waitlist invites in waves of 10-50 — follows once the rough edges are smoothed. If you're early on the waitlist, an invite is likely within the first month or two of v1 ship.</p>
+      </details>
     </section>
 
     <section class="signup">
