@@ -8,6 +8,18 @@
 <meta property="og:title" content="Hailsi — Real-time voice translation">
 <meta property="og:description" content="Speak your language. They hear theirs. Real-time voice translation overlay across any app, with privacy by default.">
 <meta property="og:type" content="website">
+<meta property="og:url" content="https://hailsi.com">
+<meta property="og:image" content="https://hailsi.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Hailsi — Speak your language. They hear theirs.">
+<meta property="og:site_name" content="Hailsi">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Hailsi — Real-time voice translation">
+<meta name="twitter:description" content="Speak your language. They hear theirs. Real-time voice translation overlay across any app, with privacy by default.">
+<meta name="twitter:image" content="https://hailsi.com/og-image.png">
+<meta name="twitter:image:alt" content="Hailsi — Speak your language. They hear theirs.">
+<meta name="twitter:site" content="@HailsiApp">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
@@ -286,28 +298,4 @@ footer a:hover { text-decoration: underline; }
 </div>
 
 <script>
-  const form = document.getElementById('waitlist-form');
-  const successMsg = document.getElementById('success-msg');
-
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const formData = new FormData(form);
-
-    try {
-      // MailerLite endpoint is JSONP-flavored; use no-cors so the request fires
-      // even though we can't read the response. HTML5 email validation already
-      // catches malformed addresses client-side; MailerLite handles the rest.
-      await fetch('https://assets.mailerlite.com/jsonp/2333853/forms/187038979778938606/subscribe', {
-        method: 'POST',
-        mode: 'no-cors',
-        body: formData
-      });
-      form.style.display = 'none';
-      successMsg.classList.add('visible');
-    } catch (err) {
-      alert('Network error. Please email hello@hailsi.com directly.');
-    }
-  });
-</script>
-</body>
-</html>
+  const form 
