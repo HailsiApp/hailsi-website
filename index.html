@@ -311,7 +311,7 @@ footer a:hover { text-decoration: underline; }
   </main>
 
   <footer>
-    <p>© 2026 Hailsi. Built for connection across language.</p>
+    <p>&copy; 2026 Hailsi. Built for connection across language.</p>
     <p class="etymology">Hailsi — from Estonian <em>hääl</em> (voice) + <em>sild</em> (bridge). A voice-bridge between languages.</p>
     <p class="legal-links"><a href="/privacy">Privacy</a> · <a href="/terms">Terms</a></p>
   </footer>
@@ -322,4 +322,19 @@ footer a:hover { text-decoration: underline; }
   // browser never navigates the page away — even if this script fails to run,
   // the user stays on hailsi.com. This handler just swaps the UI to the
   // success message after the submit fires.
-  cons
+  const form = document.getElementById('waitlist-form');
+  const successMsg = document.getElementById('success-msg');
+  if (form && successMsg) {
+    form.addEventListener('submit', () => {
+      // Defer slightly so the form's submit event has fully dispatched into
+      // the iframe before we hide it, in case any browser quirks care about
+      // the form being in the DOM at submit time.
+      setTimeout(() => {
+        form.style.display = 'none';
+        successMsg.classList.add('visible');
+      }, 50);
+    });
+  }
+</script>
+</body>
+</html>
