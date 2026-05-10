@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hailsi — Real-time voice translation, in your own voice</title>
+<meta name="description" content="Speak your language. They hear theirs. Real-time voice translation overlay for your computer — across any app, with privacy by default.">
+<meta property="og:title" content="Hailsi — Real-time voice translation">
+<meta property="og:description" content="Speak your language. They hear theirs. Real-time voice translation overlay across any app, with privacy by default.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #FAF6F0;
+  --text: #2D3142;
+  --text-soft: #5A6072;
+  --accent: #E07856;
+  --accent-dark: #C25A3A;
+  --panel: #FFF0E8;
+  --border: #E8DDD0;
+  --success: #4A7C59;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.container {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 80px 24px 64px;
+}
+
+header {
+  margin-bottom: 80px;
+}
+
+.logo {
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  color: var(--text);
+  display: inline-block;
+}
+
+.logo .dot {
+  color: var(--accent);
+}
+
+main h1 {
+  font-size: 56px;
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -1.5px;
+  margin-bottom: 24px;
+}
+
+main h1 .accent {
+  color: var(--accent);
+}
+
+main .lede {
+  font-size: 22px;
+  color: var(--text-soft);
+  margin-bottom: 56px;
+  line-height: 1.5;
+  max-width: 640px;
+}
+
+.audiences {
+  margin: 56px 0 64px;
+}
+
+.audiences h2 {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--text-soft);
+  margin-bottom: 24px;
+}
+
+.audiences ul {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px 32px;
+}
+
+.audiences li {
+  font-size: 17px;
+  padding-left: 28px;
+  position: relative;
+  line-height: 1.4;
+}
+
+.audiences li::before {
+  content: "→";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.signup {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 32px;
+  margin-bottom: 24px;
+}
+
+.signup h2 {
+  font-size: 24px;
+  font-weight: 800;
+  margin-bottom: 8px;
+  letter-spacing: -0.5px;
+}
+
+.signup p {
+  color: var(--text-soft);
+  margin-bottom: 24px;
+}
+
+.signup form {
+  display: flex;
+  gap: 12px;
+}
+
+.signup input[type="email"] {
+  flex: 1;
+  padding: 14px 18px;
+  font-size: 16px;
+  font-family: inherit;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: white;
+  color: var(--text);
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.signup input[type="email"]:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(224, 120, 86, 0.15);
+}
+
+.signup button {
+  padding: 14px 28px;
+  font-size: 16px;
+  font-weight: 700;
+  font-family: inherit;
+  background: var(--accent);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.05s;
+  white-space: nowrap;
+}
+
+.signup button:hover {
+  background: var(--accent-dark);
+}
+
+.signup button:active {
+  transform: translateY(1px);
+}
+
+.signup .fineprint {
+  font-size: 14px;
+  color: var(--text-soft);
+  margin-top: 16px;
+  margin-bottom: 0;
+}
+
+.signup .fineprint a {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.signup .fineprint a:hover {
+  text-decoration: underline;
+}
+
+.success-msg {
+  display: none;
+  padding: 14px 18px;
+  background: white;
+  border: 1px solid var(--success);
+  border-radius: 10px;
+  color: var(--success);
+  font-weight: 500;
+  margin-top: 8px;
+}
+
+.success-msg.visible {
+  display: block;
+}
+
+footer {
+  margin-top: 96px;
+  padding-top: 32px;
+  border-top: 1px solid var(--border);
+  font-size: 14px;
+  color: var(--text-soft);
+}
+
+footer p { margin-bottom: 8px; }
+
+footer a {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+footer a:hover { text-decoration: underline; }
+
+.etymology {
+  font-style: italic;
+  margin-top: 12px;
+}
+
+@media (max-width: 540px) {
+  .container { padding: 56px 20px 48px; }
+  main h1 { font-size: 40px; letter-spacing: -1px; }
+  main .lede { font-size: 18px; }
+  .audiences ul { grid-template-columns: 1fr; }
+  .signup { padding: 24px; }
+  .signup form { flex-direction: column; }
+  .signup button { width: 100%; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <div class="logo">Hailsi<span class="dot">.</span></div>
+  </header>
+
+  <main>
+    <h1>Speak your language.<br><span class="accent">They hear theirs.</span></h1>
+    <p class="lede">Hailsi is a real-time voice translation overlay for your computer. Talk naturally in your own language while your conversation partner hears you in theirs — across any app, with privacy by default.</p>
+
+    <section class="audiences">
+      <h2>Built for</h2>
+      <ul>
+        <li>International couples and families</li>
+        <li>Remote workers on global teams</li>
+        <li>Gamers playing across borders</li>
+        <li>Language learners building real fluency</li>
+      </ul>
+    </section>
+
+    <section class="signup">
+      <h2>Get notified at launch</h2>
+      <p>Hailsi is in private development. Drop your email and we'll let you know when v1 ships. No spam, no marketing blasts — just one note when it's ready.</p>
+      <form action="https://assets.mailerlite.com/jsonp/2333853/forms/187038979778938606/subscribe" method="POST" id="waitlist-form">
+        <input type="hidden" name="ml-submit" value="1">
+        <input type="hidden" name="anticsrf" value="true">
+        <input type="email" name="fields[email]" placeholder="you@example.com" required>
+        <button type="submit">Notify me</button>
+      </form>
+      <div class="success-msg" id="success-msg">Thanks — check your inbox to confirm. We'll be in touch when v1 ships.</div>
+      <p class="fineprint">Or email <a href="mailto:hello@hailsi.com">hello@hailsi.com</a> directly.</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2026 Hailsi. Built for connection across language.</p>
+    <p class="etymology">Hailsi — from Estonian <em>hääl</em> (voice) + <em>sild</em> (bridge). A voice-bridge between languages.</p>
+  </footer>
+</div>
+
+<script>
+  const form = document.getElementById('waitlist-form');
+  const successMsg = document.getElementById('success-msg');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const formData = new FormData(form);
+
+    try {
+      // MailerLite endpoint is JSONP-flavored; use no-cors so the request fires
+      // even though we can't read the response. HTML5 email validation already
+      // catches malformed addresses client-side; MailerLite handles the rest.
+      await fetch('https://assets.mailerlite.com/jsonp/2333853/forms/187038979778938606/subscribe', {
+        method: 'POST',
+        mode: 'no-cors',
+        body: formData
+      });
+      form.style.display = 'none';
+      successMsg.classList.add('visible');
+    } catch (err) {
+      alert('Network error. Please email hello@hailsi.com directly.');
+    }
+  });
+</script>
+</body>
+</html>
