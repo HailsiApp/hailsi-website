@@ -20,6 +20,10 @@
 <meta name="twitter:image" content="https://hailsi.com/og-image.png?v=2">
 <meta name="twitter:image:alt" content="Hailsi — Speak your language. They hear theirs.">
 <meta name="twitter:site" content="@HailsiApp">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
@@ -318,9 +322,4 @@ footer a:hover { text-decoration: underline; }
   // browser never navigates the page away — even if this script fails to run,
   // the user stays on hailsi.com. This handler just swaps the UI to the
   // success message after the submit fires.
-  const form = document.getElementById('waitlist-form');
-  const successMsg = document.getElementById('success-msg');
-  if (form && successMsg) {
-    form.addEventListener('submit', () => {
-      // Defer slightly so the form's submit event has fully dispatched into
-      // the ifr
+  cons
