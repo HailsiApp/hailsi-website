@@ -280,7 +280,8 @@ footer a:hover { text-decoration: underline; }
     <section class="signup">
       <h2>Get notified at launch</h2>
       <p>Hailsi is in private development. Drop your email and we'll let you know when v1 ships. No spam, no marketing blasts — just one note when it's ready.</p>
-      <form action="https://assets.mailerlite.com/jsonp/2333853/forms/187038979778938606/subscribe" method="POST" id="waitlist-form">
+      <iframe name="ml-target" style="display:none;width:0;height:0;border:0" tabindex="-1" aria-hidden="true"></iframe>
+      <form action="https://assets.mailerlite.com/jsonp/2333853/forms/187038979778938606/subscribe" method="POST" target="ml-target" id="waitlist-form">
         <input type="hidden" name="ml-submit" value="1">
         <input type="hidden" name="anticsrf" value="true">
         <input type="email" name="fields[email]" placeholder="you@example.com" required>
@@ -293,4 +294,28 @@ footer a:hover { text-decoration: underline; }
 
   <footer>
     <p>© 2026 Hailsi. Built for connection across language.</p>
-    <p class="etymology">Hailsi — from Estonian <em>hääl</em> (voice) + <em>sild</em> (bridge). A voice-bridge between languages.<
+    <p class="etymology">Hailsi — from Estonian <em>hääl</em> (voice) + <em>sild</em> (bridge). A voice-bridge between languages.</p>
+  </footer>
+</div>
+
+<script>
+  // The form posts natively to a hidden iframe (target="ml-target"), so the
+  // browser never navigates the page away — even if this script fails to run,
+  // the user stays on hailsi.com. This handler just swaps the UI to the
+  // success message after the submit fires.
+  const form = document.getElementById('waitlist-form');
+  const successMsg = document.getElementById('success-msg');
+  if (form && successMsg) {
+    form.addEventListener('submit', () => {
+      // Defer slightly so the form's submit event has fully dispatched into
+      // the iframe before we hide it, in case any browser quirks care about
+      // the form being in the DOM at submit time.
+      setTimeout(() => {
+        form.style.display = 'none';
+        successMsg.classList.add('visible');
+      }, 50);
+    });
+  }
+</script>
+</body>
+</html>
