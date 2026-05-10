@@ -246,6 +246,20 @@ footer a:hover { text-decoration: underline; }
   margin-top: 12px;
 }
 
+.legal-links {
+  margin-top: 16px;
+  font-size: 13px;
+}
+
+.legal-links a {
+  color: var(--text-soft);
+  text-decoration: none;
+}
+
+.legal-links a:hover {
+  color: var(--accent);
+}
+
 @media (max-width: 540px) {
   .container { padding: 56px 20px 48px; }
   main h1 { font-size: 40px; letter-spacing: -1px; }
@@ -295,6 +309,7 @@ footer a:hover { text-decoration: underline; }
   <footer>
     <p>© 2026 Hailsi. Built for connection across language.</p>
     <p class="etymology">Hailsi — from Estonian <em>hääl</em> (voice) + <em>sild</em> (bridge). A voice-bridge between languages.</p>
+    <p class="legal-links"><a href="/privacy">Privacy</a> · <a href="/terms">Terms</a></p>
   </footer>
 </div>
 
@@ -308,14 +323,4 @@ footer a:hover { text-decoration: underline; }
   if (form && successMsg) {
     form.addEventListener('submit', () => {
       // Defer slightly so the form's submit event has fully dispatched into
-      // the iframe before we hide it, in case any browser quirks care about
-      // the form being in the DOM at submit time.
-      setTimeout(() => {
-        form.style.display = 'none';
-        successMsg.classList.add('visible');
-      }, 50);
-    });
-  }
-</script>
-</body>
-</html>
+      // the ifr
