@@ -47,6 +47,12 @@ REQUIRED_META = {
 # (we hit this exact failure mode pre-CI: a file got cut off mid-tag).
 MIN_HTML_SIZE_BYTES = 4000
 
+# HTML files in the repo that aren't deployed pages — e.g. render templates
+# used to generate og-image.png via puppeteer. Skip these from checks.
+IGNORE_HTML_FILES = {
+    "og-image.html",
+}
+
 
 # === Implementation ===
 
@@ -62,6 +68,8 @@ def check_required_files(repo_root: Path) -> None:
 
 def check_html_well_formed(repo_root: Path) -> None:
     for html_path in sorted(repo_root.glob("*.html")):
+        if html_path.name in IGNORE_HTML_FILES:
+            continue
         text = html_path.read_text(encoding="utf-8")
         size = len(text.encode("utf-8"))
         if size < MIN_HTML_SIZE_BYTES:
@@ -89,6 +97,8 @@ def check_internal_links(repo_root: Path) -> None:
     """Find href= and src= values; verify any local path resolves to a real file."""
     href_pattern = re.compile(r'(?:href|src)=["\']([^"\'#?]+)', re.IGNORECASE)
     for html_path in sorted(repo_root.glob("*.html")):
+        if html_path.name in IGNORE_HTML_FILES:
+            continue
         text = html_path.read_text(encoding="utf-8")
         for match in href_pattern.finditer(text):
             url = match.group(1)
